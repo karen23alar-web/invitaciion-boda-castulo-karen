@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -9,24 +10,108 @@
 
 <link rel="stylesheet" href="style.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;500;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
 
-<section id="sobre">
+<div id="contenedor">
 
-<img src="sobre.png" id="sobreImg" alt="Sobre">
+<section class="pantalla" id="pantalla1">
+<img src="sobre.png" class="imagen">
+</section>
 
-<div id="mensaje">
-Toca el sello para abrir la invitación
+<section class="pantalla" id="pantalla2">
+<img src="noscasamos.png" class="imagen">
+</section>
+
+<section class="pantalla" id="pantalla3">
+<img src="historia.png" class="imagen">
+</section>
+
+<section class="pantalla" id="pantalla4">
+<img src="ceremonia.png" class="imagen">
+
+<a
+class="boton"
+target="_blank"
+href="https://maps.google.com">
+Ver ubicación
+</a>
+
+</section>
+
+<section class="pantalla" id="pantalla5">
+
+<img src="cuenta.png" class="imagen">
+
+<div id="contador">
+
+<div>
+
+<span id="dias">000</span>
+
+<p>Días</p>
+
+</div>
+
+<div>
+
+<span id="horas">00</span>
+
+<p>Horas</p>
+
+</div>
+
+<div>
+
+<span id="minutos">00</span>
+
+<p>Minutos</p>
+
+</div>
+
+<div>
+
+<span id="segundos">00</span>
+
+<p>Segundos</p>
+
+</div>
+
 </div>
 
 </section>
+<section class="pantalla" id="pantalla6">
+
+<img src="recepcion.png" class="imagen">
+
+<a
+class="boton"
+target="_blank"
+href="https://maps.google.com">
+Ver ubicación
+</a>
+
+</section>
+
+<section class="pantalla" id="pantalla7">
+
+<img src="gracias.png" class="imagen">
+
+</section>
+
+</div>
+
+<audio id="musica" loop>
+<source src="musica.mp3" type="audio/mpeg">
+</audio>
 
 <script src="script.js"></script>
 
 </body>
-
 </html>
