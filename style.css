@@ -100,3 +100,330 @@ bottom:20px;
 }
 
 }
+/* ===================================
+   PANTALLA DE APERTURA
+=================================== */
+
+body.invitacion-bloqueada {
+  overflow: hidden;
+}
+
+.pantalla-sobre {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.18), transparent 45%),
+    linear-gradient(160deg, #899775, #657255);
+  transition:
+    opacity 1s ease,
+    visibility 1s ease;
+}
+
+.pantalla-sobre.oculta {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.contenido-sobre {
+  width: 100%;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.texto-abrir {
+  margin: 0 0 34px;
+  color: #fffaf0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(19px, 5vw, 28px);
+  letter-spacing: 1px;
+  animation: aparecerTexto 1.4s ease both;
+}
+
+.indicacion-abrir {
+  margin-top: 35px;
+  color: rgba(255, 250, 240, 0.9);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  letter-spacing: 1.5px;
+  animation: latidoTexto 2s ease-in-out infinite;
+}
+
+.sobre-boton {
+  display: block;
+  width: 310px;
+  max-width: 85vw;
+  height: 220px;
+  margin: 0 auto;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  perspective: 1200px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.sobre {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 18px 15px rgba(42, 48, 34, 0.28));
+  animation: flotarSobre 3s ease-in-out infinite;
+}
+
+.sobre-atras {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 75%;
+  border-radius: 5px;
+  background: #eee3ce;
+}
+
+.carta-sobre {
+  position: absolute;
+  left: 7%;
+  bottom: 10%;
+  z-index: 2;
+  width: 86%;
+  height: 72%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(155, 123, 69, 0.35);
+  border-radius: 3px;
+  background:
+    linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.1)),
+    #fffaf0;
+  color: #7b6846;
+  font-family: Georgia, "Times New Roman", serif;
+  transition:
+    transform 1.2s cubic-bezier(.22,.7,.18,1),
+    opacity 0.8s ease;
+}
+
+.carta-sobre span {
+  font-size: 31px;
+  font-style: italic;
+  letter-spacing: 2px;
+}
+
+.carta-sobre small {
+  margin-top: 8px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.sobre-frente {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 4;
+  width: 100%;
+  height: 75%;
+  overflow: hidden;
+  border-radius: 4px;
+  background:
+    linear-gradient(
+      145deg,
+      transparent 49.5%,
+      #e1d1b7 50%
+    ) left / 50.5% 100% no-repeat,
+    linear-gradient(
+      215deg,
+      transparent 49.5%,
+      #eadcc4 50%
+    ) right / 50.5% 100% no-repeat;
+}
+
+.sobre-frente::after {
+  content: "";
+  position: absolute;
+  left: 25%;
+  bottom: -62%;
+  width: 50%;
+  height: 110%;
+  background: #f0e4cf;
+  transform: rotate(45deg);
+  transform-origin: center;
+}
+
+.solapa {
+  position: absolute;
+  top: 25%;
+  left: 0;
+  z-index: 5;
+  width: 100%;
+  height: 54%;
+  background: #f5ead7;
+  clip-path: polygon(0 0, 50% 72%, 100% 0);
+  transform-origin: top center;
+  transition:
+    transform 0.9s cubic-bezier(.45,.05,.2,1),
+    z-index 0s 0.45s;
+}
+
+.sello {
+  position: absolute;
+  left: 50%;
+  top: 54%;
+  z-index: 7;
+  width: 55px;
+  height: 55px;
+  display: grid;
+  place-items: center;
+  border: 2px solid rgba(255, 235, 176, 0.6);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, #d8b66c, #a27c37 70%);
+  color: #fff3d1;
+  box-shadow:
+    inset 0 0 0 3px rgba(116, 80, 27, 0.22),
+    0 5px 9px rgba(54, 42, 25, 0.25);
+  transform: translate(-50%, -50%);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+
+.sello span {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  font-style: italic;
+}
+
+/* Animación del sobre abierto */
+
+.sobre-boton.abierto .sobre {
+  animation: none;
+}
+
+.sobre-boton.abierto .solapa {
+  z-index: 1;
+  transform: rotateX(180deg);
+}
+
+.sobre-boton.abierto .sello {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.3);
+}
+
+.sobre-boton.abierto .carta-sobre {
+  z-index: 8;
+  transform: translateY(-115px) scale(1.03);
+}
+
+/* ===================================
+   ANIMACIONES AL HACER SCROLL
+=================================== */
+
+.revelar {
+  opacity: 0;
+  transform: translateY(45px);
+  transition:
+    opacity 1s ease,
+    transform 1s cubic-bezier(.2,.7,.2,1);
+  will-change: opacity, transform;
+}
+
+.revelar.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.revelar-izquierda {
+  opacity: 0;
+  transform: translateX(-45px);
+  transition:
+    opacity 1s ease,
+    transform 1s ease;
+}
+
+.revelar-derecha {
+  opacity: 0;
+  transform: translateX(45px);
+  transition:
+    opacity 1s ease,
+    transform 1s ease;
+}
+
+.revelar-izquierda.visible,
+.revelar-derecha.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ===================================
+   BOTONES
+=================================== */
+
+a,
+button {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    opacity 0.25s ease;
+}
+
+a:active,
+button:active {
+  transform: scale(0.96);
+}
+
+/* ===================================
+   ANIMACIONES GENERALES
+=================================== */
+
+@keyframes flotarSobre {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+@keyframes aparecerTexto {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes latidoTexto {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Respeta a quienes tienen desactivadas las animaciones */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
