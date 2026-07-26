@@ -37,3 +37,80 @@ musica.play().catch(()=>{});
 }
 
 },{once:true});
+/* ===================================
+   APERTURA DEL SOBRE
+=================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const pantallaSobre = document.getElementById("pantalla-sobre");
+  const botonAbrir = document.getElementById("abrir-invitacion");
+
+  // Bloquea el desplazamiento hasta abrir la invitación.
+  document.body.classList.add("invitacion-bloqueada");
+
+  if (pantallaSobre && botonAbrir) {
+    let invitacionAbierta = false;
+
+    botonAbrir.addEventListener("click", () => {
+      if (invitacionAbierta) return;
+
+      invitacionAbierta = true;
+      botonAbrir.classList.add("abierto");
+
+      // Espera a que termine de abrirse el sobre.
+      setTimeout(() => {
+        pantallaSobre.classList.add("oculta");
+        document.body.classList.remove("invitacion-bloqueada");
+
+        // Inicia la música únicamente si ya tienes un audio con este ID.
+        const musica = document.getElementById("musica");
+
+        if (musica) {
+          musica.play().catch(() => {
+            console.log("La música necesita activarse manualmente.");
+          });
+        }
+      }, 1500);
+
+      // Elimina la pantalla después de la animación.
+      setTimeout(() => {
+        pantallaSobre.remove();
+      }, 2700);
+    });
+  }
+
+
+  /* ===================================
+     APARICIÓN DE ELEMENTOS AL BAJAR
+  =================================== */
+
+  const elementosAnimados = document.querySelectorAll(
+    ".revelar, .revelar-izquierda, .revelar-derecha"
+  );
+
+  if ("IntersectionObserver" in window) {
+    const observador = new IntersectionObserver(
+      (entradas) => {
+        entradas.forEach((entrada) => {
+          if (entrada.isIntersecting) {
+            entrada.target.classList.add("visible");
+            observador.unobserve(entrada.target);
+          }
+        });
+      },
+      {
+        threshold: 0.14,
+        rootMargin: "0px 0px -40px 0px"
+      }
+    );
+
+    elementosAnimados.forEach((elemento) => {
+      observador.observe(elemento);
+    });
+  } else {
+    // Compatibilidad con navegadores antiguos.
+    elementosAnimados.forEach((elemento) => {
+      elemento.classList.add("visible");
+    });
+  }
+});
