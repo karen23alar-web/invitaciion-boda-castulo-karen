@@ -43,14 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       invitacionAbierta = true;
       botonAbrir.classList.add("abierto");
-       const audioBoda = document.getElementById("musica");
-
-if (audioBoda) {
-  audioBoda.volume = 0.7;
-  audioBoda.play().catch((error) => {
-    console.log("No se pudo iniciar la música:", error);
-  });
-}
+       
 
       // Espera a que termine de abrirse el sobre.
       setTimeout(() => {
