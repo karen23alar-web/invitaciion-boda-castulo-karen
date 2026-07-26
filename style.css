@@ -427,3 +427,43 @@ button:active {
     transition-duration: 0.01ms !important;
   }
 }
+/* PÉTALOS */
+
+#petalos-container {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 99998;
+}
+
+.petalo {
+  position: absolute;
+  top: -40px;
+  width: 18px;
+  height: 24px;
+  background: #f3b6c2;
+  border-radius: 70% 30% 70% 30%;
+  opacity: 0.85;
+  animation-name: caerPetalo;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes caerPetalo {
+  0% {
+    transform: translateY(-40px) rotate(0deg);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: translateY(110vh) rotate(540deg);
+    opacity: 0;
+  }
+}
