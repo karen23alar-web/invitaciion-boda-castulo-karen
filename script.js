@@ -96,3 +96,25 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+// ===== PÉTALOS =====
+
+const contenedorPetalos = document.getElementById("petalos-container");
+
+function crearPetalo() {
+  if (!contenedorPetalos) return;
+
+  const petalo = document.createElement("div");
+  petalo.classList.add("petalo");
+
+  petalo.style.left = Math.random() * 100 + "vw";
+  petalo.style.animationDuration = (6 + Math.random() * 5) + "s";
+  petalo.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+  contenedorPetalos.appendChild(petalo);
+
+  setTimeout(() => {
+    petalo.remove();
+  }, 11000);
+}
+
+setInterval(crearPetalo, 500);
