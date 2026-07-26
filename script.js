@@ -24,19 +24,6 @@ setInterval(actualizarContador,1000);
 actualizarContador();
 
 
-// ===== MÚSICA =====
-
-const musica = document.getElementById("musica");
-
-document.body.addEventListener("click",()=>{
-
-if(musica){
-
-musica.play().catch(()=>{});
-
-}
-
-},{once:true});
 /* ===================================
    APERTURA DEL SOBRE
 =================================== */
@@ -56,6 +43,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
       invitacionAbierta = true;
       botonAbrir.classList.add("abierto");
+       const audioBoda = document.getElementById("musica");
+
+if (audioBoda) {
+  audioBoda.volume = 0.7;
+  audioBoda.play().catch((error) => {
+    console.log("No se pudo iniciar la música:", error);
+  });
+}
 
       // Espera a que termine de abrirse el sobre.
       setTimeout(() => {
@@ -63,13 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.remove("invitacion-bloqueada");
 
         // Inicia la música únicamente si ya tienes un audio con este ID.
-        const musica = document.getElementById("musica");
-
-        if (musica) {
-          musica.play().catch(() => {
-            console.log("La música necesita activarse manualmente.");
-          });
-        }
+        
       }, 1500);
 
       // Elimina la pantalla después de la animación.
